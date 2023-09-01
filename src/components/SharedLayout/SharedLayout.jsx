@@ -1,9 +1,9 @@
-import HeaderContainer from "components/Header/Header";
+import { HeaderContainer } from "components/Header/Header";
 import { Container } from "./SharedLayout.styled";
 import { Outlet } from "react-router-dom";
 
 
-const SharedLayout = () => {
+export const SharedLayout = () => {
   return (
     <Container>
       <HeaderContainer/>
@@ -13,8 +13,6 @@ const SharedLayout = () => {
     </Container>
   );
 };
-
-export default SharedLayout;
 
 
 

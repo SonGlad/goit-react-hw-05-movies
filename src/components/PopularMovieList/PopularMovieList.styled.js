@@ -1,21 +1,39 @@
 import { styled } from "styled-components";
 
-export const FilmName = styled.p`
-font-weight: 600;
-text-align: center;
-width: 130px;
-`
-
-export const MovePreview = styled.div`
-display: flex;
-width: 200px;
-background-color: silver;
-border-radius: 10px;
-align-items: center;
-`
-
 export const HomePageSection = styled.section`
- display: flex;
+text-align: center;
+
+.hero-section-title{
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+.movie-list{
+    display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
-` 
+}
+
+.movie-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 210px;
+    background-color: silver;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.movie-img{
+    width: 100%;
+    height: auto;
+}
+
+.film-name{
+    font-weight: 700;
+    text-align: center;
+    min-height: 48px;
+    width: 100%;
+}
+`

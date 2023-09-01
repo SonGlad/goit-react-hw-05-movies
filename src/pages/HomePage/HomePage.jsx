@@ -33,9 +33,7 @@ const HomePage = () => {
 
     return(
         <>
-            {loading ? 
-            <PopularMoviesList trendFilms={popular} /> : 
-            <div></div>}
+            {loading && <PopularMoviesList trendFilms={popular} />}
         </>
     );
 };
