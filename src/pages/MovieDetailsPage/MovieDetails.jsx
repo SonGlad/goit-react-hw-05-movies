@@ -8,72 +8,48 @@ import NoPoster from '../../Images/no-poster.jpg';
 
 
 const MovieDetailsPage = () => {
-  // const location = useLocation();
-  // const backLink = useRef(location.state?.from ?? '/')
-  // const [moviesInfo, setMoviesInfo] = useState({});
-  // const { moviesID } = useParams();
-
-
-  // const fetchMoviesDetails = useCallback(async () => {
-  //   try {
-  //     const data = await getMoviesDetailsById(moviesID);
-  //     setMoviesInfo(data);
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   } 
-  // }, [moviesID]);
-
-
-  // useEffect(() => {
-  //   fetchMoviesDetails();
-  // }, [fetchMoviesDetails]);
-
-
-  // const date = new Date(moviesInfo.release_date);
-  // const year = date.getFullYear();
-  // const score = Math.round(moviesInfo.vote_average * 10);
-  // const overview = moviesInfo.overview;
-  // const genres = moviesInfo.genres;
-
-
   const location = useLocation();
-  const backLink = location?.state?.from ?? '/'
-  
-  const { movieid } = useParams();
-  
+  const backLink = useRef(location.state?.from ?? '/')
+  const [moviesInfo, setMoviesInfo] = useState({});
+  const { moviesID } = useParams();
 
-  const [movie, setMovies] = useState([] ?? null);
-  console.log(movie);
+
+  const fetchMoviesDetails = useCallback(async () => {
+    try {
+      const data = await getMoviesDetailsById(moviesID);
+      setMoviesInfo(data);
+    } catch (error) {
+      console.log(error.message);
+    } 
+  }, [moviesID]);
+
+
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await getMoviesDetailsById(movieid);
-      console.log(res.results);
-      setMovies(res);
-      
-    };
-   
-    
-    fetchData().catch(() => {
-      
-    })
-  }, [movieid]);
-  const score = Math.round(movie?.vote_average * 10);
+    fetchMoviesDetails();
+  }, [fetchMoviesDetails]);
+
+
+  const date = new Date(moviesInfo.release_date);
+  const year = date.getFullYear();
+  const score = Math.round(moviesInfo.vote_average * 10);
+  const overview = moviesInfo.overview;
+  const genres = moviesInfo.genres;
 
 
 
   return (
     <>
       <MovieDetailsStyled>
-        <Link className='back-link' to={backLink}>Go back</Link>
+        <Link className='back-link' to={backLink.current}>Go back</Link>
         <div className='main-content'>
-          {/* <img className='main-img' width={170}
+          <img className='main-img' width={170}
             src={moviesInfo.poster_path
               ? `https://image.tmdb.org/t/p/original/${moviesInfo.poster_path}`
               : NoPoster}
             alt={moviesInfo.title}
-          /> */}
+          />
           <div className='main-decr'>
-            {/* <div>
+            <div>
               <h2 className='card-title'>{moviesInfo.title} ({year})</h2>
               <p className='card-score'>User score {score} %</p>
               <h3 className='card-overview'>Overview:</h3>
@@ -82,7 +58,7 @@ const MovieDetailsPage = () => {
               {genres &&
               genres.map(genre => 
               <span key={genre.id}> {genre.name},</span>)}
-            </div> */}
+            </div>
             <div>
               <h3 className='information-title'>Additional Information</h3>
               <ul>
