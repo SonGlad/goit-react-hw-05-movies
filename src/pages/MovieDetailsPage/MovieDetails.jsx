@@ -9,7 +9,6 @@ import NoPoster from '../../Images/no-poster.jpg';
 const MovieDetailsPage = () => {
   const location = useLocation();
   const [moviesInfo, setMoviesInfo] = useState({});
-  const [loaded, setLoaded] = useState(false);
   const { moviesID } = useParams();
 
 
@@ -19,9 +18,7 @@ const MovieDetailsPage = () => {
       setMoviesInfo(data);
     } catch (error) {
       console.log(error.message);
-    } finally {
-      setLoaded(true);
-    }
+    } 
   }, [moviesID]);
 
 
@@ -47,7 +44,6 @@ const MovieDetailsPage = () => {
 
 
   return (
-    loaded && (
     <>
       <MovieDetailsStyled>
           <button type='button' className='back-button'
@@ -100,7 +96,6 @@ const MovieDetailsPage = () => {
       </Suspense>
     </>
     )
-  );
 };
 
 

@@ -17,6 +17,7 @@ const MoviePage = () => {
 
     const handleSubmit = query => {
         setSearchParams({ query: query });
+        setSearchResults([]);
     };
 
     
@@ -36,7 +37,6 @@ const MoviePage = () => {
     
     
     useEffect(() => {
-        setLoading(true);
         if (!searchResults.length) {
           setLoading(false);
         }
@@ -54,12 +54,9 @@ const MoviePage = () => {
 
     return (
         <>
-            <Searchbar
-            onSubmit={handleSubmit}
-            text={'Find movies by name'}
-            />
-            {loading && <PopularMoviesList searchResults={searchResults}/>}
-            {/* <ToastContainer transition={Slide} draggablePercent={60} /> */}
+            <Searchbar onSubmit={handleSubmit}/>
+            {loading && (<div>Loading data...</div>)}
+            <PopularMoviesList searchResults={searchResults}/>
         </>
     );
 };

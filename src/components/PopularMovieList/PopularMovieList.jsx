@@ -6,10 +6,9 @@ import NoPoster from '../../Images/no-poster.jpg';
 
 
 
-const PopularMoviesList = ({ trendFilms, searchResults, showTitle }) => {
+const PopularMoviesList = ({ trendFilms, searchResults}) => {
   const location = useLocation();
   const [arrayList, setArrayList] = useState([]);
-  const [loaded, setLoaded] = useState(false);
   const isHomePage = location.pathname === "/";
 
 
@@ -26,18 +25,17 @@ const PopularMoviesList = ({ trendFilms, searchResults, showTitle }) => {
         return Promise.resolve();
       }
 
-      return new Promise(resolve => {
+      return new Promise(({resolve, reject}) => {
         const img = new Image();
         img.src = `https://image.tmdb.org/t/p/original/${item.poster_path}`;
-        img.onload = () => resolve();
-        img.onerror = () => resolve();
+        img.onload = resolve;
+        img.onerror = reject;
       });
     });
 
 
     Promise.all(promises)
       .then(() => {
-        setLoaded(true);
       })
       .catch(() => {
         console.log('Error loading images');
@@ -53,7 +51,6 @@ const PopularMoviesList = ({ trendFilms, searchResults, showTitle }) => {
 
 
   return (
-    loaded && (
       <HomePageSection>
          {isHomePage && <h1 className='hero-section-title'>Trending Movies</h1>}
         <ul className='movie-list'>
@@ -88,7 +85,6 @@ const PopularMoviesList = ({ trendFilms, searchResults, showTitle }) => {
         </ul>
       </HomePageSection>
     )
-  );
 };
 
 
