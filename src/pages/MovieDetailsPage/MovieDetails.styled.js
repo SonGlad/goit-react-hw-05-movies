@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 
 export const MovieDetailsStyled = styled.section`
 
-.back-button{    
+.back-link{    
     display: flex;
     justify-content: center;
     align-items: center;
