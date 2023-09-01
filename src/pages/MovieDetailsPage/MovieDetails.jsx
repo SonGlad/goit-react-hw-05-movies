@@ -9,9 +9,9 @@ import NoPoster from '../../Images/no-poster.jpg';
 
 const MovieDetailsPage = () => {
   const location = useLocation();
-  const backLink = location?.state?.from ?? '/';
   const [moviesInfo, setMoviesInfo] = useState({});
   const { moviesID } = useParams();
+  const backLink = location?.state?.from ?? '/';
 
 
   const fetchMoviesDetails = useCallback(async () => {
@@ -90,72 +90,3 @@ const MovieDetailsPage = () => {
 
 
 export default MovieDetailsPage;
-
-
-// import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
-// import React from 'react';
-// import { useEffect, useState } from 'react';
-// import { getMoviesDetailsById } from '../../API/API';
-
-// const MovieDetaisPage = () => {
-//   const location = useLocation();
-//   const cameBack = location?.state?.from ?? '/'
-  
-//   const { moviesID } = useParams();
-  
-
-//   const [movie, setMovies] = useState([] ?? null);
-//   console.log(movie);
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       const res = await getMoviesDetailsById(moviesID);
-//       console.log(res.results);
-//       setMovies(res);
-      
-//     };
-   
-    
-//     fetchData().catch(() => {
-      
-//     })
-//   }, [moviesID]);
-//   const score = Math.round(movie?.vote_average * 10);
-
-//   // if (movie === null) {
-//   //   return 
-//   // }
-//   return (
-//     <>
-//     <Link to={cameBack}>Back</Link>
-//       <div className=''>
-//         <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="" width='300px'/>
-//         <div className=''>
-//           <h1>{movie?.original_title}</h1>
-//           <p>{`User score ${score}%`}</p>
-//           <p>{movie?.overview}</p>
-
-//           <ul>
-//             <span>Genres: </span>
-//             {movie && movie.genres && movie.genres.map(genre => {
-//               return <li key={genre.id} className=''>{genre.name}</li>
-//             })}
-//           </ul>
-//         </div>
-//       </div>
-
-      
-//       <ul className=''>
-//         <li className=''>
-          
-//           <Link to="cast" className='' state={{from: cameBack}}>Cast</Link>
-//         </li>
-//         <li className=''>
-//           <Link to="review" className='' state={{from: cameBack}}>Reviews</Link>
-//         </li>
-//       </ul>
-//       <Outlet />
-//     </>
-//   );
-// };
-
-// export default MovieDetaisPage;
