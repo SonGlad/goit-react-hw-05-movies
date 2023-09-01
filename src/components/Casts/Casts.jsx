@@ -15,9 +15,7 @@ const Casts = () => {
       setMoviesCast(data);
     } catch (error) {
       console.log(error.message);
-    } finally {
-    //   setLoaded(true);
-    }
+    } 
   }, [moviesID]);
 
 
