@@ -65,14 +65,14 @@ const MovieDetailsPage = () => {
                 <li>
                   <Link className='info-link'
                     to="cast"
-                    state={{from: location.state.from}}
+                    state={{from: backLink}}
                     >Casts
                   </Link>
                 </li>
                 <li>
                   <Link className='info-link last-link'
                     to="review"
-                    state={{from: location.state.from}}
+                    state={{from: backLink}}
                     >Reviews
                   </Link>
                 </li>
